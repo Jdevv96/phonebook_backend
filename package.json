@@ -1,0 +1,12 @@
+{
+  "name": "phonebook_serve",
+  "version": "1.0.0",
+  "description": "A backend server meant to house the data from the phonebook app. Continuing on with the full_stack_open_course, and the phonebook app built in part2.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JDevv",
+  "license": "ISC"
+}
