@@ -43,7 +43,6 @@ app.get('/api/persons/:id', (request, response) => {
     }
 })
 
-// ex 3.2
 app.get('/api/info', (request, response) => {
     let count = persons.length
     let timestamp = new Date()
@@ -54,6 +53,12 @@ app.get('/api/info', (request, response) => {
         ${timestamp}
         </p>
     `)
+})
+
+app.delete('/api/persons/:id', (request, response) => {
+    const id = request.params.id
+    persons = persons.filter(p => p.id !== id)
+    response.status(204).end()
 })
 
 const PORT = 3001
