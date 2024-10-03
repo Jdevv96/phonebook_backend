@@ -26,14 +26,26 @@ let persons = [
       }
 ]
 
-let count = persons.length
-// define route
+
+
+// routes
 app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
 
+app.get('/api/persons/:id', (request, response) => {
+    const id = request.params.id
+    const person = persons.find( p => p.id === id)
+    if (person) {
+        response.json(person)
+    } else {
+        response.status(404).end()
+    }
+})
+
 // ex 3.2
 app.get('/api/info', (request, response) => {
+    let count = persons.length
     let timestamp = new Date()
     response.send(`
         <p>
