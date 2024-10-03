@@ -26,12 +26,23 @@ let persons = [
       }
 ]
 
+let count = persons.length
 // define route
 app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
 
-const PORT = 3001
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+// ex 3.2
+app.get('/api/info', (request, response) => {
+    let timestamp = new Date()
+    response.send(`
+        <p>
+        Phonebook has info for ${count} people.
+        <br/>
+        ${timestamp}
+        </p>
+    `)
 })
+
+const PORT = 3001
+app.listen(PORT)
