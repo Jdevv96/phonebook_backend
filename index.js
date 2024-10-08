@@ -75,12 +75,18 @@ app.post('/api/persons', (request, response) =>{
         return response.status(400).json({
             error: 'Contact name or phone number missing. Please try again.'
         })
-    } 
+    } else if (persons.some( p => p.name.toLowerCase() === body.name.toLowerCase())) {
+        return response.status(400).json({
+            error: 'Duplicate contact name. Please try again.'
+        })
+    }
     const person = { // contact object to add
         id: generateID(),
         name: body.name,
         number: body.number
     }
+
+    
     persons = persons.concat(person)
     response.json(person) // responds with the newly added contact
 })
