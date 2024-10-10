@@ -1,8 +1,7 @@
 // import express lib
 const express = require('express') 
+const morgan = require('morgan')
 const app = express()
-
-app.use(express.json())
 
 let persons = [
     { 
@@ -27,6 +26,11 @@ let persons = [
       }
 ]
 
+morgan.token()
+
+app.use(express.json())
+app.use(morgan('tiny'))
+
 const generateID = () => {
     const maxID = persons.length > 0
     ? Math.max( ...persons.map( p => Number(p.id)))
@@ -34,7 +38,6 @@ const generateID = () => {
 
     return String(maxID + 1)
 }
-
 
 // routes
 app.get('/api/persons', (request, response) => {
