@@ -26,8 +26,6 @@ let persons = [
       }
 ]
 
-morgan.token()
-
 app.use(express.json())
 app.use(morgan('tiny'))
 
