@@ -1,5 +1,6 @@
 // import express lib
 const express = require('express') 
+const cors = require('cors')
 const morgan = require('morgan')
 const app = express()
 
@@ -28,6 +29,7 @@ let persons = [
 
 app.use(express.json())
 app.use(morgan('tiny'))
+app.use(cors())
 
 const generateID = () => {
     const maxID = persons.length > 0
@@ -70,7 +72,7 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
-app.post('/api/persons', (request, response) =>{
+app.post('/api/persons/', (request, response) =>{
     const body = request.body
     if (!body.name || !body.number) { // if no valid body, return
         return response.status(400).json({
