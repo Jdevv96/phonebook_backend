@@ -28,6 +28,7 @@ let persons = [
 ]
 
 app.use(express.json())
+app.use(express.static('dist'))
 app.use(cors())
 
 morgan.token('body', (req) => JSON.stringify(req.body))
@@ -97,5 +98,7 @@ app.post('/api/persons/', (request, response) =>{
     response.json(person) // responds with the newly added contact
 })
 
-const PORT = 3001
-app.listen(PORT)
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+    console.log('Server running on port ', PORT)
+})
